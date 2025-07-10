@@ -35,7 +35,7 @@ const handleSubmit = async (e) => {
 
   try {
     const res = await axios.post(
-      "http://localhost:5001/api/contact",
+      "https://daniel-web-api.vercel.app/api/contact",
       {
         name,
         email,
