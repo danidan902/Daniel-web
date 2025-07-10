@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 5000;
 app.use(cors({
   origin: [
     "http://localhost:5173",               
-    "https://daniel-web-two.vercel.app"    
+    "https://daniel-web-two.vercel.app/"    
   ],
   methods: ["POST", "GET"]
 }));
