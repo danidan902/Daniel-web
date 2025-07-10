@@ -31,7 +31,7 @@ function AbouteSection() {
   href="../assets/daniel.pdf" // 🔁 Change this to your actual file path
   target="_blank"
   rel="noopener noreferrer"
-  className="px-6 py-2 rounded-full border text-primary hover:bg-primary/10 transition-colors duration-300 inline-flex items-center gap-2"
+  className="px-6 py-2 rounded-full border text-primary hover:bg-primary/10 transition-colors duration-300 inline-flex items-center gap-2 justify-center"
 >
   View CV
   <Eye

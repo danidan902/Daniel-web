@@ -35,7 +35,7 @@ const handleSubmit = async (e) => {
 
   try {
     const res = await axios.post(
-      "https://daniel-web-api.vercel.app/api/contact",
+      "https://api-node-backend.onrender.com/api/contact",
       {
         name,
         email,
