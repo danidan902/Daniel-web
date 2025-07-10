@@ -11,11 +11,10 @@ const PORT = process.env.PORT || 5000;
 
 //  Middleware
 app.use(cors({
-  origin: [
-    "http://localhost:5173",               
-    "https://daniel-web-two.vercel.app"    
-  ],
-  methods: ["POST", "GET"]
+  origin: "https://daniel-web-two.vercel.app",
+  methods: ["GET", "POST", "OPTIONS"],
+  allowedHeaders: ["Content-Type"],
+  credentials: true
 }));
 
 app.use(express.json());
