@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
+ import axios from "axios";
 
 function ContactSection() {
   const [isLook, setIsLook] = useState(false);
@@ -25,37 +26,47 @@ function ContactSection() {
   const [statusMessage, setStatusMessage] = useState("");
   const [statusType, setStatusType] = useState("success");
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  // at the top of your file
+// http://localhost:5001/api/contact
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    try {
-      const res = await fetch("https://daniel-web-two.vercel.app/api/contact", {
-        method: "POST",
+  try {
+    const res = await axios.post(
+      "http://localhost:5001/api/contact",
+      {
+        name,
+        email,
+        password,
+        message,
+      },
+      {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name, email, password, message }),
-      });
+      }
+    );
 
-        if (!res.ok) {
-    throw new Error("Failed to send");
-  }
-
-       setStatusType("success");
-       setStatusMessage("✅ Thank you for your message!");
-      setName("");
-      setEmail("");
-      setPassword("");
-      setMessage("");
-    } catch (error) {
-        setStatusType("error");
-       setStatusMessage("❌ Failed to send message. Please try again.");
+    if (res.status !== 200) {
+      throw new Error("Failed to send");
     }
 
-    setTimeout(() => {
-  setStatusMessage("");
-}, 3000);
-  };
+    setStatusType("success");
+    setStatusMessage("✅ Thank you for your message!");
+    setName("");
+    setEmail("");
+    setPassword("");
+    setMessage("");
+  } catch (error) {
+    setStatusType("error");
+    setStatusMessage("❌ Failed to send message. Please try again.");
+  }
+
+  setTimeout(() => {
+    setStatusMessage("");
+  }, 3000);
+};
+
 
   return (
     <section id="Contact" className="py-24 px-4 relative bg-secondary/30">
