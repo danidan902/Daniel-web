@@ -31,6 +31,7 @@ function ContactSection() {
 const handleSubmit = async (e) => {
   e.preventDefault();
 
+<<<<<<< HEAD
   try {
     const res = await axios.post(
       "http://localhost:5001/api/contact",
@@ -41,6 +42,11 @@ const handleSubmit = async (e) => {
         message,
       },
       {
+=======
+    try {
+      const res = await fetch("https://daniel-web-api.vercel.app/api/contact", {
+        method: "POST",
+>>>>>>> f7e13ec5c3c2bd24b1b4e01c2dc0124a7ee92bb8
         headers: {
           "Content-Type": "application/json",
         },
