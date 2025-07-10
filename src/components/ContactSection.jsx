@@ -29,7 +29,7 @@ function ContactSection() {
     e.preventDefault();
 
     try {
-      const res = await fetch("https://daniel-web-two.vercel.app/api/contact", {
+      const res = await fetch("https://daniel-web-api.vercel.app/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
