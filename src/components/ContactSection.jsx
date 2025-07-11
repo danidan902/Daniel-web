@@ -18,6 +18,7 @@ import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
  import axios from "axios";
 
 function ContactSection() {
+  const [loading, setLoading] = useState(false);
   const [isLook, setIsLook] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -32,6 +33,7 @@ function ContactSection() {
 
 const handleSubmit = async (e) => {
   e.preventDefault();
+  setLoading(true)
 
   try {
     const res = await axios.post(
@@ -64,9 +66,11 @@ const handleSubmit = async (e) => {
     setStatusMessage("❌ Failed to send message. Please try again.");
   }
 
+   setLoading(false);
+
   setTimeout(() => {
     setStatusMessage("");
-  }, 3000);
+  }, 5000);
 };
 
 
@@ -259,12 +263,47 @@ const handleSubmit = async (e) => {
                 />
               </div>
 
-              <button
-                type="submit"
-                className="cosmic-button w-full flex items-center justify-center gap-20"
-              >
-                <Send size={20} />
-              </button>
+   <button
+  type="submit"
+  disabled={loading}
+  className={`cosmic-button w-full flex items-center justify-center gap-3 py-2 px-4 rounded-md ${
+    loading ? "opacity-60 cursor-not-allowed" : ""
+  }`}
+>
+  {loading ? (
+    <>
+      <svg
+        className="animate-spin h-5 w-5 text-white"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+      >
+        <circle
+          className="opacity-25"
+          cx="12"
+          cy="12"
+          r="10"
+          stroke="currentColor"
+          strokeWidth="4"
+        ></circle>
+        <path
+          className="opacity-75"
+          fill="currentColor"
+          d="M4 12a8 8 0 018-8v8H4z"
+        ></path>
+      </svg>
+      Sending...
+    </>
+  ) : (
+    <>
+      <Send size={20} />
+      Send Message
+    </>
+  )}
+</button>
+
+
+
             </form>
           </div>
         </div>
